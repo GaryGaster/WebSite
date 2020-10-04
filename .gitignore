@@ -3,9 +3,5 @@
 *.pyc
 __pycache__/
 local_settings.py
-local_settings.py.save
-db.sqlite3
-db2.sqlite3
-db3.sqlite3
 /media
 /static
