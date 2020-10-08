@@ -10,26 +10,23 @@ Profil
 {% block content%}
 <section>
     <div id="profil">
+        <a class="password-change" href="{% url 'password-change' %}">zmina hasła</a>
         <div class="media">
-                {% ifequal profile.image 'default.jpg' %}
-                    <img src="{% static 'default.jpg' %}" class="rounded-circle account-img"  alt="Default">
-                {% else %}
-                    <img src="{{ user.profile.image.url }}" class="rounded-circle account-img" alt="Wrzuć sobie avatar">        
-                {% endifequal %}                
-                <div class="media-body">
-                    <h2 class="account-heading">{{ user.username }}</h2>
-                    <p>{{ user.email }}</p>
-                </div>
+            <img src="{{ user.profile.image.url }}" class="rounded-circle account-img" alt="Miejsce na avatar">
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p>{{ user.email }}</p>
             </div>
-            {% language 'pl' %}
-            <form method="POST" class="form-group" enctype="multipart/form-data">
-                <h2 class="border-bottom mb-4">Profil</h2>
-                {% csrf_token %}
-                {{u_form|crispy}}
-                {{p_form|crispy}}
-                <button type="submit" class="btn btn-success">Edytuj</button>
-            </form>
-            {% endlanguage %}
         </div>
-    </section>
+        {% language 'pl' %}
+        <form method="POST" class="form-group" enctype="multipart/form-data">
+            <h2 class="border-bottom mb-4">Profil</h2>
+            {% csrf_token %}
+            {{u_form|crispy}}
+            {{p_form|crispy}}
+            <button type="submit" class="btn btn-success">Edytuj</button>
+        </form>
+        {% endlanguage %}
+    </div>
+</section>
 {% endblock %}
