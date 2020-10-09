@@ -1,13 +1,18 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, update_session_auth_hash
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
+
 from django.views import generic
 from django.shortcuts import render, redirect
 
-from .forms import UserUpdateForm, ProfileUpdateForm
+from .forms import EmailUpdateForm, ProfileUpdateForm
 
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('profile')
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
@@ -21,27 +26,44 @@ class SignUp(generic.CreateView):
         login(self.request, user)
         return view
 
-
 @login_required
 def profile(request):
+    return render(request, 'accounts/profile.html')
+
+@login_required
+def EmailChangeView(request):
     if request.method == 'POST':
-        u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST,
+        e_form = EmailUpdateForm(request.POST, instance=request.user)
+
+        if e_form.is_valid():
+            e_form.save()
+            messages.success(request, f'Twój email został zaktualizowany!')
+            return redirect('profile')
+    else:
+        e_form = EmailUpdateForm(instance=request.user)
+
+    context = {
+        'e_form': e_form,
+    }
+    return render(request, 'accounts/email_change.html', context)
+
+@login_required
+def AvatarChangeView(request):
+    if request.method == 'POST':    
+        a_form = ProfileUpdateForm(request.POST,
                                    request.FILES,
                                    instance=request.user.profile)
 
-        if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
-            p_form.save()
+        if a_form.is_valid():            
+            a_form.save()
             messages.success(request, f'Twoje konto zostało zaktualizowane!')
             return redirect('profile')
 
     else:
-        u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.profile)
+        a_form = ProfileUpdateForm(instance=request.user.profile)
 
     context = {
-        'u_form': u_form,
-        'p_form': p_form
+        'a_form': a_form
     }
-    return render(request, 'accounts/profile.html', context)
+
+    return render(request, 'accounts/avatar_change.html', context)

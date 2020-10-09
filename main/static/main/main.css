@@ -16,7 +16,6 @@
     font-family: 'Lobster', cursive;
     color: #fff;
     padding-left: 1em;
-
 }
 
 .navbar-nav {
@@ -39,14 +38,11 @@
 
 aside {
     padding: 10%;
-     
 }
 
 
 aside img {
     height: 80px;
-    
-     
 }
 
 /* Animation bonus */
@@ -110,7 +106,6 @@ html, body {
 
 body {
     color: #fff;
-
 }
 
 #main {
@@ -127,7 +122,6 @@ body {
 
 #footer {
     align-items: center;
-
 }
 
 /* Card login and sing up */
@@ -191,7 +185,6 @@ body {
     width: 70%;
     margin-inline: 15%;
     padding: 5%;
-
 }
 
 .img-anime img {
@@ -221,27 +214,23 @@ body {
     width: 100%;
     font-size: 1vw;
     transition: transform 2s ease-in-out, box-shadow 2s ease-in-out;
-
 }
 
 .card:hover {
     transform: scale(1.1);
-    box-shadow: 20px 20px 16px black;         
-
+    box-shadow: 20px 20px 16px black;
 }
 
 .card-body {
     margin-top: 1vh;
     padding: 1%;
     text-align: center;
-      
 }
 
 .card-form .card-body {
     width: 60vw;
     min-width: 360px;
     text-align: left;
-      
 }
 
 .card-title {  
@@ -253,7 +242,6 @@ body {
     width: 100%vw;
     height: 25vh;
     height: 15vw;
-
 }
 
 /* Icon platforms inside main card */
@@ -349,14 +337,12 @@ a:hover {
 .detail-card-body {
     margin-top: 1vh;
     text-align: center;
-
 }
 
 
 .detail-card-body img {
     width: auto;
     height: 4vw;
-
 }
 
 .detail-title {
@@ -374,15 +360,13 @@ a:hover {
 
 #detail-votes button {
     color: #ff0032;
-    float: right;    
-
+    float: right;
 }
 
 #detail-desc {
     font-size: 2vw 3vh;
     text-align: left;
     padding: 10%;
-
 }
 
 /* Card Verify user age */
@@ -403,5 +387,4 @@ a:hover {
 
  .pagination {
     margin-top: 1rem;
-
  }

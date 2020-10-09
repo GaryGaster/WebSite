@@ -10,23 +10,21 @@ Profil
 {% block content%}
 <section>
     <div id="profil">
-        <a class="password-change" href="{% url 'password-change' %}">zmina hasła</a>
+        <h2 class="border-bottom mb-4">Profil</h2>
         <div class="media">
-            <img src="{{ user.profile.image.url }}" class="rounded-circle account-img" alt="Miejsce na avatar">
+            <img src="{{ user.profile.image.url }}" class="rounded-circle account-img" alt="">
             <div class="media-body">
                 <h2 class="account-heading">{{ user.username }}</h2>
                 <p>{{ user.email }}</p>
             </div>
         </div>
-        {% language 'pl' %}
-        <form method="POST" class="form-group" enctype="multipart/form-data">
-            <h2 class="border-bottom mb-4">Profil</h2>
-            {% csrf_token %}
-            {{u_form|crispy}}
-            {{p_form|crispy}}
-            <button type="submit" class="btn btn-success">Edytuj</button>
-        </form>
-        {% endlanguage %}
+        <div id="profile-change">
+            <a class="password-change-t" href="{% url 'password-change' %}">Zmień haslo <i class="fas fa-edit"></i></a>
+            <br/>
+            <a href="{% url 'email-change' %}">Zmień email <i class="fas fa-edit"></i></a>
+            <br/>
+            <a href="{% url 'avatar-change' %}">Zmień avatar <i class="fas fa-edit"></i></a>
+        </div>
     </div>
 </section>
 {% endblock %}
