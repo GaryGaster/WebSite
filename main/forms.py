@@ -5,7 +5,7 @@ from .models import Movie, Serial, Anime
 class MovieForm(forms.ModelForm):
     class Meta:
         model = Movie
-        fields = ['title', 'description', 'year', 'platforms', 'image', 'url']
+        fields = ['title', 'description', 'year', 'platforms', 'image', 'url', 'genre']
         labels = {
             'title': 'Tytuł',
             'description': 'Opis',
@@ -13,13 +13,14 @@ class MovieForm(forms.ModelForm):
             'platforms': 'Platformy',
             'image': 'Obrazek',
             'url': 'Link',
+            'genre': 'Gatunek'
         }
 
 
 class SerialForm(forms.ModelForm):
     class Meta:
         model = Serial
-        fields = ['title', 'description', 'year', 'platforms', 'image', 'url']
+        fields = ['title', 'description', 'year', 'platforms', 'image', 'url', 'genre']
         labels = {
             'title': 'Tytuł',
             'description': 'Opis',
@@ -27,13 +28,14 @@ class SerialForm(forms.ModelForm):
             'platforms': 'Platformy',
             'image': 'Obrazek',
             'url': 'Link',
+            'genre': 'Gatunek'
         }
 
 
 class AnimeForm(forms.ModelForm):
     class Meta:
         model = Anime
-        fields = ['title', 'description', 'year', 'platforms', 'image', 'url']
+        fields = ['title', 'description', 'year', 'platforms', 'image', 'url', 'genre']
         labels = {
             'title': 'Tytuł',
             'description': 'Opis',
@@ -41,4 +43,5 @@ class AnimeForm(forms.ModelForm):
             'platforms': 'Platformy',
             'image': 'Obrazek',
             'url': 'Link',
+            'genre': 'Gatunek'
         }

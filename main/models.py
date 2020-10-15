@@ -13,6 +13,13 @@ class Video(models.Model):
         (5, 'CDA'),
     }
 
+    GENRES = {
+        (0, 'Inne'),
+        (1, 'Horror'),
+        (2, 'Komedia'),
+        (3, 'Sci-fi'),
+    }
+
     title = models.CharField(max_length=128)
     description = models.TextField(blank=True, default='')
     year = models.IntegerField(null=True, blank=True)
@@ -24,6 +31,7 @@ class Video(models.Model):
     image = models.ImageField(null=True, blank=True, default='video-default.jpg', upload_to='media/')
     url = models.URLField(blank=True, default='')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    genre = models.PositiveSmallIntegerField(default=0, choices=GENRES)
 
     def __str__(self):
         return self.title
