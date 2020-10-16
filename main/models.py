@@ -68,3 +68,21 @@ class Anime(Video):
 
     def get_absolute_url(self):
         return reverse('anime-detail', kwargs={'pk': self.pk})
+
+
+class MovieRating(models.Model):
+    review = models.TextField(default='')
+    rating = models.PositiveSmallIntegerField(default=5)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+
+class SerialRating(models.Model):
+    review = models.TextField(default='')
+    rating = models.PositiveSmallIntegerField(default=5)
+    serial = models.ForeignKey(Serial, on_delete=models.CASCADE)
+
+
+class AnimeRating(models.Model):
+    review = models.TextField(default='')
+    rating = models.PositiveSmallIntegerField(default=5)
+    anime = models.ForeignKey(Anime, on_delete=models.CASCADE)
