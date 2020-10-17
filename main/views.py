@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import MovieForm, SerialForm, AnimeForm
+from .forms import MovieForm, SerialForm, AnimeForm, ActorForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -11,7 +11,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Movie, Serial, Anime
+from .models import Movie, Serial, Anime, Actor
 
 
 # Home
@@ -97,7 +97,6 @@ class MovieDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 # Series
-
 @login_required
 def serial_upvote(request, serial_id):
     if request.method == "POST":
@@ -174,8 +173,6 @@ class SerialDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 # Anime
-
-
 @login_required
 def anime_upvote(request, anime_id):
     if request.method == "POST":
@@ -247,5 +244,52 @@ class AnimeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         anime = self.get_object()
         if self.request.user == anime.user:
+            return True
+        return False
+
+
+# Actors
+class ActorListView(ListView):
+    model = Actor
+    template_name = 'main/actors_home.html'
+    context_object_name = 'actors'
+    paginate_by = 15
+
+
+class ActorDetailView(DetailView):
+    model = Actor
+
+
+class ActorCreateView(LoginRequiredMixin, CreateView):
+    model = Actor
+    form_class = ActorForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class ActorUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Actor
+    form_class = ActorForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        actor = self.get_object()
+        if self.request.user == actor.user:
+            return True
+        return False
+
+
+class ActorDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Actor
+    success_url = '/actors/'
+
+    def test_func(self):
+        actor = self.get_object()
+        if self.request.user == actor.user:
             return True
         return False

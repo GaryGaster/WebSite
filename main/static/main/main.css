@@ -1,5 +1,4 @@
 /* Navigation */
-
 .navi {
     display: grid;
     grid-template-columns: auto auto auto auto;
@@ -34,8 +33,6 @@
 
 
 /* Aside */
-
-
 aside {
     padding: 10%;
 }
@@ -46,7 +43,6 @@ aside img {
 }
 
 /* Animation bonus */
-
 @keyframes bonus {
     0% {color: #fff; font-size: 1.4em;}
     50% {color: green; font-size: 1.6em;}
@@ -85,9 +81,6 @@ aside img {
 
 
 /* Section, body */
-
-
-
 section {
     margin-inline: 5%;
 }
@@ -117,28 +110,22 @@ body {
 
 
 /* Footer */
-
-
-
 #footer {
     align-items: center;
 }
 
 /* Card login and sing up */
-
 .account-card {
     width: 65%;
     padding: 7%;
 }
 
 /* Button password reset */
-
 #reset-password {
     float: right;
 }
 
 /* Logout */
-
 .logout {
     margin-top: 5%;
     margin-left: 5%;
@@ -150,8 +137,6 @@ body {
 
 
 /* Profil */
-
-
 #profil {
     padding: 10%;
     width: 70%;
@@ -167,14 +152,11 @@ body {
 
 
 /* Home page */
-
-
 #carouselExampleControls {
     padding: 8%;
 }
 
 /* Image main (Filmy, Seriale, Anime, +18) */
-
 .img-filmy img {
     width: 50%;
     padding: 5%;
@@ -201,8 +183,7 @@ body {
 
 
 /* Main card  */
-
-.video {
+.main-card {
     display: grid;
     grid-template-columns: 25% 25% 25%;
     grid-gap: 5%;
@@ -245,7 +226,6 @@ body {
 }
 
 /* Icon platforms inside main card */
-
 #icon {
     display: grid;
     grid-template-columns: 49% 49%;
@@ -257,14 +237,12 @@ body {
 }
 
 /* Size icon  */
-
 .img-platform {
     height: 100%;
     width: 70%;
 }
 
 /* Icon edit and delete inside main card */
-
 .edit-delete a {
     float: left;
     font-size: 1.3em;
@@ -281,7 +259,6 @@ body {
 
 
 /* Icon voters/likes */
-
 #votes-icon button {
     float: right;
     color: #ff0032;
@@ -290,7 +267,6 @@ body {
 }
 
 /* inscription "watch in:" */
-
 .watch {
     margin-bottom: 0;
 }
@@ -305,9 +281,7 @@ a:hover {
 }
 
 
-
 /* Detail */
-
 .detail {
     text-align: center;
     margin-top: 5%;
@@ -369,22 +343,13 @@ a:hover {
     padding: 10%;
 }
 
-/* Card Verify user age */
-
-.card-body-age {
-    padding: 10%;
-    text-align: center;
-}
-
 /* Alert confirm delete */
-
 #confirm-delete .card-body {
     padding: 7%;
     width: 60%;
  }
 
  /* Pagination */
-
  .pagination {
     margin-top: 1rem;
  }

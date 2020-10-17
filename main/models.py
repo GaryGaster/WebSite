@@ -1,7 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+
+from datetime import date
 from multiselectfield import MultiSelectField
+
 
 
 class Video(models.Model):
@@ -48,9 +51,32 @@ class Video(models.Model):
     class Meta:
         abstract = True
 
+class Actor(models.Model):
+    first_name = models.CharField(max_length=32)
+    last_name = models.CharField(max_length=32)
+    year_of_birth = models.PositiveIntegerField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, default='video-default.jpg', upload_to='media/')
+    rating = models.IntegerField(choices=[(i, i) for i in range(0, 11)], blank=True)
+
+    def __str__(self):
+        return str(self.first_name + " " + self.last_name)
+
+    def full_name(self):
+        return self.first_name + " " + self.last_name
+
+    def calculate_age(self):
+        today = date.today()
+        age = today.year - self.year_of_birth
+        return age
+
+    def get_absolute_url(self):
+        return reverse('actor-detail', kwargs={'pk': self.pk})
+
+
 
 class Movie(Video):
     voters = models.ManyToManyField(User, related_name='movie_voters')
+    actors = models.ManyToManyField(Actor, blank=True)
 
     def get_absolute_url(self):
         return reverse('movie-detail', kwargs={'pk': self.pk})
@@ -58,6 +84,7 @@ class Movie(Video):
 
 class Serial(Video):
     voters = models.ManyToManyField(User, related_name='serial_voters')
+    actors = models.ManyToManyField(Actor, blank=True)
 
     def get_absolute_url(self):
         return reverse('serial-detail', kwargs={'pk': self.pk})
@@ -65,6 +92,7 @@ class Serial(Video):
 
 class Anime(Video):
     voters = models.ManyToManyField(User, related_name='anime_voters')
+    actors = models.ManyToManyField(Actor, blank=True)
 
     def get_absolute_url(self):
         return reverse('anime-detail', kwargs={'pk': self.pk})

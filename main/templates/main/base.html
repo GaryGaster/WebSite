@@ -1,7 +1,6 @@
+{% load static %}
 <!doctype html>
 <html id="html" lang="en">
-{% load static %}
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -58,37 +57,33 @@
         </div>
     </nav>
 </header>
+<section>
+    <main id="main" role="main" class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="width: 500px; margin: 3%;">
+                    {{ message }}
 
+                </div>
 
-
-<header>
-
-
-</header>
-<main id="main" role="main" class="container-fluid">
-    <div class="row">
-        <div class="col-md-9">
-            {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}" style="width: 500px; margin: 3%;">
-                {{ message }}
-
+                {% endfor %}
+                {% endif %}
+                {% block content %}{% endblock %}
             </div>
-
-            {% endfor %}
-            {% endif %}
-            {% block content %}{% endblock %}
+            <aside class="col-md-3">
+                <div id="Adv">
+                    <a href="https://www.italki.com/i/6bCBfG?hl=pl">
+                        <img src="{% static 'logo_white.svg' %}" alt="logo">
+                        <h2 class='text-adv'>10$ BONUSU</h2>
+                        <p>Rejestrując się przez ten link</p></a>
+                </div>
+            </aside>
         </div>
-        <aside class="col-md-3">
-            <div id="Adv">
-                <a href="https://www.italki.com/i/6bCBfG?hl=pl">
-                    <img src="{% static 'logo_white.svg' %}" alt="logo">
-                    <h2 class='text-adv'>10$ BONUSU</h2>
-                    <p>Rejestrując się przez ten link</p></a>
-            </div>
-        </aside>
-    </div>
-</main>
+    </main>
+</section>
+
 <footer id="footer" class="text-muted">
     <div class="container-fluid text-center">
         <p><i class="far fa-copyright"></i> GaryGaster </p>

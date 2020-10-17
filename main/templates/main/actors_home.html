@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Filmy
+{% endblock %}
+{% block content %}
+<section>
+    <h1>Aktorzy</h1>
+    <div class="create">
+        <a href="{% url 'actor-create' %}"><button type="button" class="btn btn-success btn-sm">Dodaj <i class="fas fa-plus-circle"></i></button> </a>
+    </div>
+    <div class="pagination">
+        {% if is_paginated %}
+
+        {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1"><<</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}"><</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">></a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">>></a>
+        {% endif %}
+        {% endif %}
+    </div>
+
+    <article class="main-card">
+        {% for actor in actors %}
+        <div class="card">
+            {% ifequal actor.image 'video-default.jpg' %}
+            <a href="{% url 'actor-detail' actor.id %}"><img src="{% static 'video-default2.jpg' %}" class="card-img" alt="Default"></a>
+            {% else %}
+            <a href="{% url 'actor-detail' actor.id %}"><img src="{{actor.image.url}}" class="card-img"  alt="Obrazek"></a>
+            {% endifequal %}
+            <div class="card-body">
+                <h5 class="card-title">{{ actor.full_name}}</h5>
+                <h5 class="card-title">Wiek: {{ actor.calculate_age}}</h5>
+            </div>
+        </div>
+        {% endfor %}
+    </article>
+
+    <div class="pagination">
+        {% if is_paginated %}
+        {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1"><<</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}"><</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">></a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">>></a>
+        {% endif %}
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

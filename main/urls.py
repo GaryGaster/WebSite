@@ -32,4 +32,12 @@ urlpatterns = [
     path('anime/<int:pk>/delete/', views.AnimeDeleteView.as_view(), name='anime-delete'),
     path('upvote_anime/<int:anime_id>/', views.anime_upvote, name='anime-upvote'),
 
+    # Actors
+    path('actors/', views.ActorListView.as_view(), name='actors-home'),
+    path('actors/<int:pk>/', views.ActorDetailView.as_view(), name='actor-detail'),
+    path('actors/new/', views.ActorCreateView.as_view(), name='actor-create'),
+    path('actors/<int:pk>/update/', views.ActorUpdateView.as_view(), name='actor-update'),
+    path('actors/<int:pk>/delete/', views.ActorDeleteView.as_view(), name='actor-delete'),
+    # path('upvote_actors/<int:actors_id>/', views.Actor_upvote, name='actor-upvote'),
+
 ]
